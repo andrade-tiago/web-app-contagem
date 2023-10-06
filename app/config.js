@@ -18,6 +18,11 @@ const
 				case (value > 3600):
 					value = 3600;
 					break;
+				
+				default:
+					let numDecimals = countDecimals(value);
+
+					value = value.toFixed(numDecimals > 3 ? 3 : numDecimals);
 			}
 
 			this._value = value;
@@ -61,6 +66,6 @@ const
 		}
 	};
 
-blockTime.value = JSON.parse(localStorage.getItem('block-time')) || 5;
+blockTime.value = JSON.parse(localStorage.getItem('block-time')) || 3;
 count.value = JSON.parse(localStorage.getItem('count')) || 0;
 title.value = JSON.parse(localStorage.getItem('title'));

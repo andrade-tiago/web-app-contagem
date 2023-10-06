@@ -17,10 +17,24 @@
 		<link rel="stylesheet" href="./css/style.css" />
 
 		<script defer src="./app/main.js"></script>
+		<script defer src="./app/auxFunctions.js"></script>
 		<script defer src="./app/config.js"></script>
 	</head>
 	<body>
-		<header></header>
+		<header>
+			<div class="container">
+				<div class="content row distributed">
+					<span></span>
+
+					<button type="button"
+						class="btn"
+						id="hamburguer"
+						title="Menu">
+						<i class="ri-menu-line"></i>
+					</button>
+				</div>
+			</div>
+		</header>
 
 		<div class="container">
 			<div class="content row">
@@ -31,19 +45,30 @@
 						<dt>Bloqueios de clique (segundos)</dt>
 						<dd class="content">
 							Impede que o botão seja clicado mais de uma vez acidentalmente, travando-o por um instante.
-							<input type="number" class="input" id="block-time" />
+							<input type="number"
+								class="input"
+								id="block-time"
+								placeholder="Padrão: 3"
+								title="Tempo em segundos" />
 						</dd>
 					</dl>
 				</section>
 	
-				<main class="content">
+				<main class="content center">
 					<input type="text"
 						class="input"
 						id="title"
-						placeholder="O que está sendo contado?" />
+						placeholder="O que está sendo contado?"
+						title="Título" />
 
-					<output id="count">0</output>
-					<button class="btn" id="add"><i class="ri-add-line"></i></button>
+					<output id="count" title="Contador">0</output>
+
+					<button type="button"
+						class="btn"
+						id="add"
+						title="+1">
+						<i class="ri-add-line"></i>
+					</button>
 				</main>
 			</div>
 		</div>
