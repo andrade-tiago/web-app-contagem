@@ -1,11 +1,14 @@
 const
-    $blockTime = document.getElementById('block-time'),
-    $title = document.getElementById('title');
+	$blockTime = document.getElementById('block-time'),
+	$title = document.getElementById('title'),
+	$count = document.getElementById('count'),
+	$add = document.getElementById('add');
 
+$title.addEventListener('change', () => title.value = $title.value);
 
-let
-    blockTime = JSON.parse(localStorage.getItem('blockTime')) || 5,
-    title = JSON.parse(localStorage.getItem('title'));
+$add.addEventListener('click', () => {
+	count.value++
+	$add.disabled = true;
 
-$blockTime.value = blockTime;
-$title.value = title;
+	setTimeout(() => $add.disabled = false, blockTime.value * 1000);
+});
