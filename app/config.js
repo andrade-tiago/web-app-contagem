@@ -4,10 +4,10 @@ const
 			return this._value;
 		},
 		set value(value) {
-			value = parseFloat(value);
+			value = Number.parseFloat(value);
 
 			switch (true) {
-				case isNaN(value):
+				case Number.isNaN(value):
 					value = this._value;
 					break;
 
@@ -50,6 +50,72 @@ const
 			$count.value = this._value;
 		}
 	},
+	displayHours = {
+		get isDisplay() {
+			return this._isDislpay;
+		},
+		set isDisplay(value) {
+			this._isDislpay = !!value;
+			this.updateElement();
+			this.display();
+
+			localStorage.setItem('display-hours', JSON.stringify(this._isDislpay));
+		},
+
+		get hours() {
+			return this._time.getHours().toString().padStart(2, '0');
+		},
+		get minutes() {
+			return this._time.getMinutes().toString().padStart(2, '0');
+		},
+
+		updateElement() {
+			$displayHours.checked = this._isDislpay;
+		},
+
+		showTime() {
+			$hours.innerHTML = this.hours;
+			$minutes.innerHTML = this.minutes;
+		},
+
+		updateTime() {
+			this._time = new Date();
+			this.showTime();
+		},
+
+		// display() {
+		// 	if (this._isDislpay) {
+		// 		this.updateTime();
+		
+		// 		this._clearTimerFunction = clearTimeout.bind(window);
+		// 		this._timer = setTimeout(() => {
+		// 			this.updateTime();
+				
+		// 			this._clearTimerFunction = clearInterval.bind(window);
+		// 			this._timer = setInterval(() => this.updateTime(), 1000*60);
+		// 		}, 1000*(60 - this._time.getSeconds()));
+		// 	} else {
+		// 		this._clearTimerFunction(this._timer);
+		// 		this._timer = null;
+		// 	}
+		
+		// 	$time.classList.toggle('visible', this._isDislpay);
+		// }
+
+		display() {
+			if (this._isDislpay) {
+				this.updateTime();
+
+				this._timer = setInterval(() => this.updateTime(), 1000);
+			} else {
+				clearInterval(this._timer);
+				
+				this._timer = null;
+			}
+
+			$time.classList.toggle('visible', this._isDislpay);
+		}
+	},
 	title = {
 		get value() {
 			return this._value;
@@ -68,4 +134,5 @@ const
 
 blockTime.value = JSON.parse(localStorage.getItem('block-time')) || 3;
 count.value = JSON.parse(localStorage.getItem('count')) || 0;
+displayHours.isDisplay = JSON.parse(localStorage.getItem('display-hours')) || false;
 title.value = JSON.parse(localStorage.getItem('title'));

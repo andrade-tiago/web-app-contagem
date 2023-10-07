@@ -18,7 +18,7 @@
 body {
 	font-family: var(--sans-serif);
 	color: var(--color-2);
-	line-height: 1.2;
+	line-height: 1.4;
 	font-size: 15px;
 	background-color: var(--bg);
 }
@@ -27,12 +27,12 @@ h3 {
 	color: var(--color);
 }
 
-.options dt {
+#options dt {
 	color: var(--color);
 	font-weight: bold;
 }
 
-.options dd {
+#options dd {
 	margin: 0;
 }
 
@@ -42,33 +42,40 @@ h3 {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	/* border: 1px solid orange; */
 }
 
 .content {
-	display: flex;
-	flex-direction: column;
 	width: 100%;
 	max-width: 1250px;
 	/* border: 1px solid gray; */
 	padding: 15px;
+}
+
+.flex {
+	display: flex;
 	gap: 20px;
 }
 
-.content .content .content {
-	padding: 0;
-	padding-left: 10px;
+.flex.column {
+	flex-direction: column;
+	align-items: flex-start;
 }
 
-.row {
+.flex.row {
 	flex-direction: row;
 }
 
-.content.center {
+.flex.middle {
 	align-items: center;
 }
 
-.content.row.distributed {
-	justify-content: space-between;
+.flex.center {
+	justify-content: center;
+}
+
+.blink {
+	animation: blink 2s infinite;
 }
 
 #menu {
@@ -76,7 +83,7 @@ h3 {
 	max-width: 350px;
 	background-color: var(--bg-2);
 	border-radius: 8px;
-	/* box-shadow: 2px 2px 2px #0002; */
+	padding: 20px;
 }
 
 .input {
@@ -93,6 +100,18 @@ h3 {
 #time {
 	font-size: 2.5rem;
 	font-family: var(--monospace);
+	gap: 0;
+	justify-content: center;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	transition: .5s;
+}
+
+#time.visible {
+	width: unset;
+	height: unset;
+	overflow: unset;
 }
 
 #title {
@@ -126,6 +145,10 @@ h3 {
 	color: var(--color-2) !important;
 }
 
+.btn:focus {
+	outline: 2px dashed var(--color-2);
+}
+
 #add {
 	background-color: #365B67;
 	color: #FFF;
@@ -139,14 +162,20 @@ h3 {
 	display: none;
 }
 
+@keyframes blink {
+	0%, 49%, 100% {visibility: visible;}
+	50%, 99% {visibility: hidden;}
+} 
+
 @media (max-width: 900px) {
 	#menu {
 		position: absolute;
 		max-width: unset;
 		left: -110%;
 		transition: .5s;
-		min-height: 100vh;
+		/* min-height: 100%; */
 		border-radius: 0;
+		box-shadow: 2px 2px 2px #0002;
 	}
 
 	#menu.active {
