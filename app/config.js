@@ -8,7 +8,7 @@ const
 
 			switch (true) {
 				case Number.isNaN(value):
-					value = this._value;
+					value = this._value; // Manter valor atual
 					break;
 
 				case (value < 0):
@@ -62,10 +62,10 @@ const
 			localStorage.setItem('display-hours', JSON.stringify(this._isDislpay));
 		},
 
-		get hours() {
+		getHours() {
 			return this._time.getHours().toString().padStart(2, '0');
 		},
-		get minutes() {
+		getMinutes() {
 			return this._time.getMinutes().toString().padStart(2, '0');
 		},
 
@@ -74,8 +74,8 @@ const
 		},
 
 		showTime() {
-			$hours.innerHTML = this.hours;
-			$minutes.innerHTML = this.minutes;
+			$hours.innerHTML = this.getHours();
+			$minutes.innerHTML = this.getMinutes();
 		},
 
 		updateTime() {
