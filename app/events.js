@@ -2,7 +2,7 @@ $hamburguer.addEventListener('click', () => $menu.classList.toggle('active'));
 
 $blockTime.addEventListener('change', () => blockTime.value = $blockTime.value);
 
-$displayHours.addEventListener('click', () => displayHours.isDisplay = $displayHours.checked);
+$displayDatetime.addEventListener('click', () => datetime.isDisplay = $displayDatetime.checked);
 
 $title.addEventListener('change', () => title.value = $title.value);
 

@@ -50,7 +50,7 @@ const
 			$count.value = this._value;
 		}
 	},
-	displayHours = {
+	datetime = {
 		get isDisplay() {
 			return this._isDislpay;
 		},
@@ -59,7 +59,7 @@ const
 			this.updateElement();
 			this.display();
 
-			localStorage.setItem('display-hours', JSON.stringify(this._isDislpay));
+			localStorage.setItem('display-datetime', JSON.stringify(this._isDislpay));
 		},
 
 		getHours() {
@@ -68,52 +68,42 @@ const
 		getMinutes() {
 			return this._time.getMinutes().toString().padStart(2, '0');
 		},
+		getDay() {
+			return this._time.getDate().toString().padStart(2, '0');
+		},
+		getMonth() {
+			return (this._time.getMonth() + 1).toString().padStart(2, '0');
+		},
 
 		updateElement() {
-			$displayHours.checked = this._isDislpay;
+			$displayDatetime.checked = this._isDislpay;
 		},
 
 		showTime() {
-			$hours.innerHTML = this.getHours();
-			$minutes.innerHTML = this.getMinutes();
+			$date.value = `${this.getDay()}/${this.getMonth()}/${this._time.getFullYear()}`;
+			$time.value = `${this.getHours()}${this._time.getSeconds()% 2 ? ':' : ' '}${this.getMinutes()}`;
 		},
 
 		updateTime() {
 			this._time = new Date();
-			this.showTime();
 		},
-
-		// display() {
-		// 	if (this._isDislpay) {
-		// 		this.updateTime();
-		
-		// 		this._clearTimerFunction = clearTimeout.bind(window);
-		// 		this._timer = setTimeout(() => {
-		// 			this.updateTime();
-				
-		// 			this._clearTimerFunction = clearInterval.bind(window);
-		// 			this._timer = setInterval(() => this.updateTime(), 1000*60);
-		// 		}, 1000*(60 - this._time.getSeconds()));
-		// 	} else {
-		// 		this._clearTimerFunction(this._timer);
-		// 		this._timer = null;
-		// 	}
-		
-		// 	$time.classList.toggle('visible', this._isDislpay);
-		// }
 
 		display() {
 			if (this._isDislpay) {
 				this.updateTime();
+				this.showTime();
 
-				this._timer = setInterval(() => this.updateTime(), 1000);
+				this._timer = setInterval(() => {
+					this.updateTime();
+					this.showTime();
+				}, 1000);
 			} else {
 				clearInterval(this._timer);
 				
 				this._timer = null;
 			}
 
-			$time.classList.toggle('visible', this._isDislpay);
+			$datetime.classList.toggle('visible', this._isDislpay);
 		}
 	},
 	title = {
@@ -134,5 +124,5 @@ const
 
 blockTime.value = JSON.parse(localStorage.getItem('block-time')) || 3;
 count.value = JSON.parse(localStorage.getItem('count')) || 0;
-displayHours.isDisplay = JSON.parse(localStorage.getItem('display-hours')) || false;
+datetime.isDisplay = JSON.parse(localStorage.getItem('display-datetime')) || false;
 title.value = JSON.parse(localStorage.getItem('title'));

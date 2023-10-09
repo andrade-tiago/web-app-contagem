@@ -53,19 +53,18 @@
 								title="Tempo em segundos" />
 						</dd>
 
-						<dt>Exibir relógio</dt>
+						<dt>Data e horas</dt>
 						<dd class="flex column">
-							Exibir horas no formato "hh:mm" no topo da ferramenta.
-							<input type="checkbox" id="display-hours" />
+							Exibir a data e a hora atual no topo da ferramenta.
+							<input type="checkbox" id="display-datetime" />
 						</dd>
 					</dl>
 				</section>
 	
 				<main class="content flex column middle">
-					<div class="flex row middle" id="time" title="Horário local">
-						<output id="hours">00</output>
-						<span class="blink">:</span>
-						<output id="minutes">00</output>
+					<div class="flex column middle" id="datetime">
+						<output id="date"></output>
+						<output id="time"></output>
 					</div>
 
 					<div class="content flex column middle border">
@@ -88,7 +87,6 @@
 							<i class="ri-add-line"></i>
 						</button>
 					</div>
-
 				</main>
 			</div>
 		</div>

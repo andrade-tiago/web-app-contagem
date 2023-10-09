@@ -102,21 +102,21 @@ h3 {
 	max-width: 500px;
 }
 
-#time {
-	font-size: 2.5rem;
+#datetime {
 	font-family: var(--monospace);
-	gap: 0;
-	justify-content: center;
-	width: 0;
-	height: 0;
-	overflow: hidden;
-	transition: .5s;
+	display: none;
 }
 
-#time.visible {
-	width: unset;
-	height: unset;
-	overflow: unset;
+#datetime.visible {
+	display: flex;
+}
+
+#date {
+	text-align: center;
+}
+
+#time {
+	font-size: 2.5rem;
 }
 
 #title {
