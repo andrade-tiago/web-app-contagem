@@ -90,13 +90,15 @@ const
 
 		display() {
 			if (this._isDislpay) {
-				this.updateTime();
-				this.showTime();
-
-				this._timer = setInterval(() => {
+				if (!this._timer) {
 					this.updateTime();
 					this.showTime();
-				}, 1000);
+	
+					this._timer = setInterval(() => {
+						this.updateTime();
+						this.showTime();
+					}, 1000);
+				}
 			} else {
 				clearInterval(this._timer);
 				
