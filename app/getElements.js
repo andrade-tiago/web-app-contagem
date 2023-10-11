@@ -8,5 +8,6 @@ const
 	$displayDatetime = document.getElementById('display-datetime'),
 	$datetime = document.getElementById('datetime'),
 	$date = document.getElementById('date'),
-	$time = document.getElementById('time')
+	$time = document.getElementById('time'),
+	$resetCount = document.getElementById('reset-count')
 ;

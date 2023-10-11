@@ -167,6 +167,30 @@ h3 {
 	display: none;
 }
 
+.group-options {
+	list-style: none;
+	display: flex;
+	gap: 10px;
+	padding: 5px;
+	margin: 0;
+	/* border: 1px solid var(--border); */
+	border-radius: 5px;
+}
+
+.group-options button {
+	font-size: 1.4rem;
+	background-color: transparent;
+	border: 1px solid var(--border);
+	color: var(--color);
+	padding: 5px 0;
+	min-width: 3rem;
+	cursor: pointer;
+}
+
+.group-options button:hover {
+	background-color: #9992
+}
+
 @keyframes blink {
 	0%, 49%, 100% {visibility: visible;}
 	50%, 99% {visibility: hidden;}

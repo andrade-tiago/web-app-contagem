@@ -12,3 +12,9 @@ $add.addEventListener('click', () => {
 
 	setTimeout(() => $add.disabled = false, blockTime.value * 1000);
 });
+
+$resetCount.addEventListener('click', () => {
+	if (confirm('Tem certeza que deseja zerar a contagem? A ação não poderá ser desfeita.')) {
+		count.value = 0;
+	}
+});
