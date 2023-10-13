@@ -7,10 +7,13 @@ $displayDatetime.addEventListener('click', () => datetime.isDisplay = $displayDa
 $title.addEventListener('change', () => title.value = $title.value);
 
 $add.addEventListener('click', () => {
-	count.value++
-	$add.disabled = true;
+	if (blockTime.value) {
+		$add.disabled = true;
 
-	setTimeout(() => $add.disabled = false, blockTime.value * 1000);
+		setTimeout(() => $add.disabled = false, blockTime.value * 1000);
+	}
+
+	count.value++
 });
 
 $resetCount.addEventListener('click', () => {
