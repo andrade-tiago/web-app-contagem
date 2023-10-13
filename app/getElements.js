@@ -9,5 +9,5 @@ const
 	$datetime = document.getElementById('datetime'),
 	$date = document.getElementById('date'),
 	$time = document.getElementById('time'),
-	$resetCount = document.getElementById('reset-count')
-;
+	$resetCount = document.getElementById('reset-count'),
+	$logs = document.getElementById('logs');

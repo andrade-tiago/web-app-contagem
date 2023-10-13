@@ -75,13 +75,20 @@ const
 			return (this._time.getMonth() + 1).toString().padStart(2, '0');
 		},
 
+		getDate() {
+			return `${this.getDay()}/${this.getMonth()}/${this._time.getFullYear()}`;
+		},
+		getTime() {
+			return `${this.getHours()}:${this.getMinutes()}`;
+		},
+
 		updateElement() {
 			$displayDatetime.checked = this._isDislpay;
 		},
 
 		showTime() {
-			$date.value = `${this.getDay()}/${this.getMonth()}/${this._time.getFullYear()}`;
-			$time.value = `${this.getHours()}${this._time.getSeconds()% 2 ? ':' : ' '}${this.getMinutes()}`;
+			$date.value = this.getDate();
+			$time.value = this._time.getSeconds() % 2 ? this.getTime() : this.getTime().replace(':', ' ');
 		},
 
 		updateTime() {
@@ -108,6 +115,25 @@ const
 			$datetime.classList.toggle('visible', this._isDislpay);
 		}
 	},
+	logs = {
+		get text() {
+			return this._value;
+		},
+		set text(value) {
+			this._text = value;
+			this.updateElement();
+
+			localStorage.setItem('logs', JSON.stringify(this._text));
+		},
+
+		updateElement() {
+			$logs.value = this._text;
+		},
+
+		log(msg) {
+			this.text = this._text + `${datetime.getDate()} ${datetime.getTime()} -> ${msg}.\r\n`;
+		}
+	},
 	title = {
 		get value() {
 			return this._value;
@@ -127,4 +153,5 @@ const
 blockTime.value = JSON.parse(localStorage.getItem('block-time')) || 3;
 count.value = JSON.parse(localStorage.getItem('count')) || 0;
 datetime.isDisplay = JSON.parse(localStorage.getItem('display-datetime')) || false;
-title.value = JSON.parse(localStorage.getItem('title'));
+title.value = JSON.parse(localStorage.getItem('title')) || '';
+logs.text = JSON.parse(localStorage.getItem('logs')) || '';
