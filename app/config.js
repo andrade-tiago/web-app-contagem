@@ -51,65 +51,70 @@ const
 		}
 	},
 	datetime = {
+		_value: new Date(),
+
+		startUpdateDatetimeInterval() {
+			if (!this._updateDatetimeIntervalID) {
+				this._updateDatetimeIntervalID = setInterval(() => this.updateDatetime(), 1000);
+			}
+		},
+		stopUpdateDatetimeInterval() {
+			clearInterval(this._updateDatetimeIntervalID);
+			this._updateDatetimeIntervalID = null;
+		},
+
 		get isDisplay() {
 			return this._isDislpay;
 		},
 		set isDisplay(value) {
 			this._isDislpay = !!value;
-			this.updateElement();
+			this.updateDisplayElement();
 			this.display();
 
 			localStorage.setItem('display-datetime', JSON.stringify(this._isDislpay));
 		},
 
 		getHours() {
-			return this._time.getHours().toString().padStart(2, '0');
+			return this._value.getHours().toString().padStart(2, '0');
 		},
 		getMinutes() {
-			return this._time.getMinutes().toString().padStart(2, '0');
+			return this._value.getMinutes().toString().padStart(2, '0');
 		},
 		getDay() {
-			return this._time.getDate().toString().padStart(2, '0');
+			return this._value.getDate().toString().padStart(2, '0');
 		},
 		getMonth() {
-			return (this._time.getMonth() + 1).toString().padStart(2, '0');
+			return (this._value.getMonth() + 1).toString().padStart(2, '0');
 		},
 
 		getDate() {
-			return `${this.getDay()}/${this.getMonth()}/${this._time.getFullYear()}`;
+			return `${this.getDay()}/${this.getMonth()}/${this._value.getFullYear()}`;
 		},
 		getTime() {
 			return `${this.getHours()}:${this.getMinutes()}`;
 		},
 
-		updateElement() {
+		updateDisplayElement() {
 			$displayDatetime.checked = this._isDislpay;
 		},
 
-		showTime() {
+		showDatetime() {
 			$date.value = this.getDate();
-			$time.value = this._time.getSeconds() % 2 ? this.getTime() : this.getTime().replace(':', ' ');
+			$time.value = this._value.getSeconds() % 2 ? this.getTime() : this.getTime().replace(':', ' ');
 		},
 
-		updateTime() {
-			this._time = new Date();
+		updateDatetime() {
+			this._value = new Date();
 		},
 
 		display() {
 			if (this._isDislpay) {
-				if (!this._timer) {
-					this.updateTime();
-					this.showTime();
-	
-					this._timer = setInterval(() => {
-						this.updateTime();
-						this.showTime();
-					}, 1000);
+				if (!this._updateElementIntervalID) {
+					this.showDatetime();
+					this._updateElementIntervalID = setInterval(() => this.showDatetime(), 1000); 
 				}
 			} else {
-				clearInterval(this._timer);
-				
-				this._timer = null;
+				this._updateElementIntervalID = null;
 			}
 
 			$datetime.classList.toggle('visible', this._isDislpay);
@@ -150,8 +155,10 @@ const
 		}
 	};
 
+datetime.startUpdateDatetimeInterval();
+
 blockTime.value = JSON.parse(localStorage.getItem('block-time')) || 3;
 count.value = JSON.parse(localStorage.getItem('count')) || 0;
 datetime.isDisplay = JSON.parse(localStorage.getItem('display-datetime')) || false;
-title.value = JSON.parse(localStorage.getItem('title')) || '';
 logs.text = JSON.parse(localStorage.getItem('logs')) || '';
+title.value = JSON.parse(localStorage.getItem('title')) || '';

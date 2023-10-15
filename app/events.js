@@ -14,7 +14,7 @@ $add.addEventListener('click', () => {
 	}
 
 	if (!count.value) {
-		logs.log('Primeiro item')
+		logs.log('Primeiro item');
 	}
 
 	count.value++;
