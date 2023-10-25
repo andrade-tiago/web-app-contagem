@@ -21,7 +21,10 @@ $add.addEventListener('click', () => {
 });
 
 $resetCount.addEventListener('click', () => {
-	if (confirm('Tem certeza que deseja zerar a contagem? A ação não poderá ser desfeita.')) {
-		count.value = 0;
-	}
+	modalConfirm('Tem certeza que deseja zerar a contagem? A ação não poderá ser desfeita.')
+		.then(result => {
+			if (result) {
+				count.value = 0;
+			}
+		});
 });

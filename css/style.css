@@ -155,7 +155,7 @@ h3 {
 }
 
 #add {
-	background-color: #365B67;
+	background-color: #f0391d;
 	color: #FFF;
 	width: 100%;
 	max-width: 600px;
@@ -197,6 +197,42 @@ h3 {
 	padding: 10px;
 	resize: vertical;
 	min-height: 100px;
+}
+
+#modal {
+	position: fixed;
+	z-index: 1000;
+	width: 100%;
+	height: 100%;
+	background-color: #0009;
+	top: 0;
+	left: 0;
+	visibility: hidden;
+	opacity: 0;
+	transition: .3s;
+}
+
+#modal.active {
+	visibility: visible;
+	opacity: 1;
+}
+
+#modal .box {
+	width: 100%;
+	max-width: 600px;
+	margin: 0 auto;
+	background: #FFF;
+	border-radius: 5px;
+	padding: 5px 20px;
+	line-height: 2;
+}
+
+#modal .box .buttons-list {
+	list-style: none;
+	padding: 0;
+	display: flex;
+	gap: 10px;
+	justify-content: flex-end;
 }
 
 @media (max-width: 900px) {

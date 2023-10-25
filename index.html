@@ -30,7 +30,8 @@
 					<button type="button"
 						class="btn"
 						id="hamburguer"
-						title="Menu">
+						title="Menu"
+						data-hamburguer>
 						<i class="ri-menu-line"></i>
 					</button>
 				</div>
@@ -39,7 +40,7 @@
 
 		<div class="container">
 			<div class="content flex row">
-				<section class="content" id="menu">
+				<section class="content" id="menu" data-menu>
 					<h3>Opções</h3>
 
 					<dl class="flex column" id="options">
@@ -50,21 +51,22 @@
 								class="input"
 								id="block-time"
 								placeholder="Padrão: 3"
-								title="Tempo em segundos" />
+								title="Tempo em segundos"
+								data-block-time />
 						</dd>
 
 						<dt>Data e hora</dt>
 						<dd class="flex column">
 							Exibir a data e a hora atual no topo da ferramenta.
-							<input type="checkbox" id="display-datetime" />
+							<input type="checkbox" data-display-datetime />
 						</dd>
 					</dl>
 				</section>
 	
 				<main class="content flex column middle">
-					<div class="flex column middle" id="datetime">
-						<output id="date"></output>
-						<output id="time"></output>
+					<div class="flex column middle" id="datetime" data-datetime>
+						<output id="date" data-date></output>
+						<output id="time" data-time></output>
 					</div>
 
 					<div class="content flex column middle border">
@@ -72,24 +74,27 @@
 							class="input"
 							id="title"
 							placeholder="O que está sendo contado?"
-							title="Título" />
+							title="Título"
+							data-title />
 	
 						<output for="add"
 							id="count"
-							title="Contador">
+							title="Contador"
+							data-count>
 							0
 						</output>
 	
 						<button type="button"
 							class="btn"
 							id="add"
-							title="+1">
+							title="+1"
+							data-add>
 							<i class="ri-add-line"></i>
 						</button>
 
 						<ul class="group-options">
 							<li>
-								<button type="button" id="reset-count">
+								<button type="button" data-reset-count>
 									<i class="ri-delete-bin-6-line"></i>
 								</button>
 							</li>
@@ -100,9 +105,26 @@
 						<textarea id="logs"
 							placeholder="Nenhuma saída"
 							disabled
+							data-logs
 						></textarea>
 					</div>
 				</main>
+			</div>
+		</div>
+
+		<div id="modal" data-modal>
+			<div class="box" data-modal-confirm>
+				<p data-box-text>
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias expedita numquam reiciendis voluptates! Dolorum modi accusamus rerum assumenda sapiente enim molestias, corrupti quod. Placeat dicta, quae nobis sequi nulla repellendus!
+				</p>
+				<ul class="buttons-list">
+					<li>
+						<button data-cancel-button>Cancelar</button>
+					</li>
+					<li>
+						<button data-confirm-button>Ok!</button>
+					</li>
+				</ul>
 			</div>
 		</div>
 
